@@ -11,14 +11,16 @@
 
   <div ng-app="myApp" class="wrapepr" ng-controller="tasks">
     <div id="toDoPane">
-      <input type="text" ng-model="task"/>
-      <select ng-model="day" ng-options="day for day in days"></select>
+      <input type="text" ng-model="task" placeholder="type task to do..."/>
+      <select ng-model="day" ng-options="day for day in days">
+        <option value="" id="startingOpt" disabled selected>Choose deadline...</option>
+      </select>
       <button ng-click="addTask()">ADD</button>
     </div>
     <br><br>
     <div id="toDoList">
       <ol>
-      <li ng-repeat="task in taskList">{{task}}</li>
+      <li ng-repeat="item in taskList">{{item}}</li>
       </ol>
     </div>
   </div>

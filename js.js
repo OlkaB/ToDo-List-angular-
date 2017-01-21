@@ -10,6 +10,8 @@ $scope.days=[];
   $scope.taskId = 0;
   $scope.addTask = function() {
     $scope.taskId++;
+    $scope.task = "";
+    $scope.day = "";
     $scope.item = {
       id: $scope.taskId,
       task: $scope.task,

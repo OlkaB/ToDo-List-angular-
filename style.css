@@ -57,6 +57,10 @@ select {
    width: 150px;
 }
 
+#startingOpt {
+  display: none;
+}
+
 label {
     color: white;
   font-weight: 700;
