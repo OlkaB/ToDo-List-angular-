@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://use.fontawesome.com/26cd03fa47.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css">
 <script src="js.js"></script>
 <body>
@@ -12,16 +13,25 @@
   <div ng-app="myApp" class="wrapepr" ng-controller="tasks">
     <div id="toDoPane">
       <input type="text" ng-model="task" placeholder="type task to do..."/>
-      <select ng-model="day" ng-options="day for day in days">
+      <select ng-model="deadline" ng-options="day for day in days">
         <option value="" id="startingOpt" disabled selected>Choose deadline...</option>
       </select>
       <button ng-click="addTask()">ADD</button>
     </div>
     <br><br>
     <div id="toDoList">
-      <ol>
-      <li ng-repeat="item in taskList">{{item}}</li>
-      </ol>
+      <table style="width:70%">
+        <tr>
+          <th>Task</th>
+          <th>Deadline</th> 
+          <th></th>
+        </tr>
+        <tr ng-repeat="item in taskList">
+          <td>{{item.task}}</td>
+          <td>{{item.deadline}}</td>
+          <td><button><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+        </tr>
+      </table>
     </div>
   </div>
 
