@@ -28,12 +28,21 @@ $scope.addTask = function() {
   //$scope.deadline = "";
   $scope.date = "";
   $scope.showListHeader = true;
+  
+  //clearing invalid messages after form submit
+  $scope.toDoPane.task.$setUntouched();
+  $scope.toDoPane.date.$setUntouched();
+  $scope.toDoPane.$setPristine();
 };
 
 
   //deleting task from Task list
   $scope.deleteTask = function() {
-     
+     $scope.elementPos = $scope.taskList.map(function(data) {
+          return data.$scope.taskId; 
+      }).indexOf(1);
+     console.log($scope.elementPos);
+     $scope.taskList.slice($scope.elementPos);
   };
   
   //table sorting

@@ -10,16 +10,27 @@
   <h1>- - <i class="fa fa-clock-o" aria-hidden="true"></i> What's to be done? - -</h1>
 
   <div ng-app="myApp" class="wrapepr" ng-controller="tasks">
-    <form name="toDoPane" id="toDoPane">
-    <label>deadline </label><input type="date" name="date" ng-model="date" required/>
-    <label>type task </label><input type="text" name="task" ng-model="task" required/>
-      
+    <form name="toDoPane" id="toDoPane" ng-submit="toDoPane.$valid && addTask()" novalidate>
+      <div>
+      <label>Deadline: </label>
+        <input type="date" name="date" ng-model="date" required/>
+        <span ng-show="(toDoPane.date.$invalid && toDoPane.date.$touched) || 
+        (toDoPane.task.$invalid && toDoPane.task.$untouched && toDoPane.date.$invalid && toDoPane.date.$untouched && toDoPane.$dirty)">type date (yyyy-mm-dd)</span>
+      </div>
+      <!--<p>untouched: {{toDoPane.date.$untouched}}; touched: {{toDoPane.date.$touched}};  pristine: {{toDoPane.date.$pristine}};  dirty: {{toDoPane.date.$dirty}}; valid: {{toDoPane.date.$valid}};<p>-->
+      <div>
+      <label>Task: </label>
+        <input type="text" name="task" ng-model="task" required/>
+        <span ng-show="(toDoPane.task.$invalid && toDoPane.task.$touched) || 
+        (toDoPane.task.$invalid && toDoPane.task.$untouched && toDoPane.date.$invalid && toDoPane.date.$untouched && toDoPane.$dirty)">type task</span>
+        </div>
+        <!--<p>untouched: {{toDoPane.task.$untouched}}; touched: {{toDoPane.task.$touched}};  pristine: {{toDoPane.task.$pristine}};  dirty: {{toDoPane.task.$dirty}}; valid: {{toDoPane.task.$valid}};<p>-->
+      <button>ADD</button>
+
       <!--<select ng-model="deadline" ng-options="day for day in days">
         <option value="" id="startingOpt" disabled selected>Choose deadline...</option>
-      </select>-->
-
-      <button ng-click="addTask()" ng-disabled="toDoPane.task.$invalid  || toDoPane.task.$pristine || toDoPane.date.$invalid ||  toDoPane.date.$pristine">ADD<div class="tooltip">Fill in task AND date fields</div></button>
-
+      </select>
+      <p>untouched: {{toDoPane.$untouched}}; touched: {{toDoPane.$touched}};  pristine: {{toDoPane.$pristine}};  dirty: {{toDoPane.$dirty}}; valid: {{toDoPane.$valid}};<p>-->
     </form>
 
     <br><br>
@@ -34,7 +45,7 @@
         <tr ng-repeat="item in taskList | orderBy:sortType" ng-model="item">
           <td>{{item.task}}</td>
           <td>{{item.date| date: "yyyy-MM-dd"}}</td>
-          <td><button ng-click="deleteTask($item)"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+          <td><button ng-click="deleteTask()"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
         </tr>
       </table>
     </div>
