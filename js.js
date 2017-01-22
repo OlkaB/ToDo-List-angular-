@@ -3,10 +3,12 @@ var app = angular.module("myApp", []);
 //days to drop-down list
 app.controller("tasks", function($scope) {
 
-/*   //list of days to select options
+/*   //list of days to select options exchanged to date input
   $scope.days=[];
   $scope.days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
   */
+
+//tasks list show/hide controller  
 $scope.showListHeader = false;
 
 //store task item to taskList object

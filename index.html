@@ -7,20 +7,23 @@
 <body>
 
 
-  <h1>- - <i class="fa fa-clock-o" aria-hidden="true"></i> What's to be done this week? - -</h1>
+  <h1>- - <i class="fa fa-clock-o" aria-hidden="true"></i> What's to be done? - -</h1>
 
   <div ng-app="myApp" class="wrapepr" ng-controller="tasks">
-    <div id="toDoPane">
-    <label>type task </label><input type="text" ng-model="task"/>
-    <label>deadline </label><input type="date" ng-model="date"/>
+    <form name="toDoPane" id="toDoPane">
+    <label>deadline </label><input type="date" name="date" ng-model="date" required/>
+    <label>type task </label><input type="text" name="task" ng-model="task" required/>
       
       <!--<select ng-model="deadline" ng-options="day for day in days">
         <option value="" id="startingOpt" disabled selected>Choose deadline...</option>
       </select>-->
 
-      <button ng-click="addTask()">ADD</button>
-    </div>
+      <button ng-click="addTask()" ng-disabled="toDoPane.task.$invalid  || toDoPane.task.$pristine || toDoPane.date.$invalid ||  toDoPane.date.$pristine">ADD<div class="tooltip">Fill in task AND date fields</div></button>
+
+    </form>
+
     <br><br>
+
     <div id="toDoList" ng-show="showListHeader">
       <table>
         <tr>
