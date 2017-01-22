@@ -48,9 +48,7 @@ input, select {
   margin-top: 10px;
 }
 
-input:fist-of-type {
-   width: 300px;
-}
+
 
 /*select {
    width: 150px;
@@ -115,6 +113,7 @@ table {
 
 th {
   cursor: pointer;
+  color: white;
 }
 
 tr {

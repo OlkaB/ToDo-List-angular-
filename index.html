@@ -8,12 +8,11 @@
 
 
   <h1>- - What's to be done this week? - -</h1>
-  <h2>your private weekly task manager</h2>
 
   <div ng-app="myApp" class="wrapepr" ng-controller="tasks">
     <div id="toDoPane">
     <label>type task </label><input type="text" ng-model="task"/>
-    <label>deadline </label><input type="date" id="date" ng-model="taskDate"/>
+    <label>deadline </label><input type="date" ng-model="date"/>
       
       <!--<select ng-model="deadline" ng-options="day for day in days">
         <option value="" id="startingOpt" disabled selected>Choose deadline...</option>
@@ -25,8 +24,8 @@
     <div id="toDoList">
       <table>
         <tr>
-          <th ng-click="sortType='task'">Task</th>
-          <th ng-click="sortType='deadline'">Deadline</th> 
+          <th ng-click="sortType='task'">Task <i class="fa fa-sort-down" aria-hidden="true"></i></th>
+          <th ng-click="sortType='date'">Deadline <i class="fa fa-sort-down" aria-hidden="true"></i></th> 
           <th></th>
         </tr>
         <tr ng-repeat="item in taskList | orderBy:sortType" ng-model="item">

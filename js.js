@@ -16,13 +16,14 @@ $scope.addTask = function() {
   $scope.item = {
     id: $scope.taskId,
     task: $scope.task,
-    deadline: $scope.deadline,
-    date: $scope.taskDate
+    //deadline: $scope.deadline,
+    date: $scope.date
   }
   $scope.taskList.push($scope.item);
   //clearing inputs
   $scope.task = "";
-  $scope.deadline = "";
+  //$scope.deadline = "";
+  $scope.date = "";
 
   //deleting task from Task list
   $scope.deleteTask = function() {
