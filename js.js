@@ -6,7 +6,8 @@ app.controller("tasks", function($scope) {
 /*   //list of days to select options
   $scope.days=[];
   $scope.days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
-*/
+  */
+$scope.showListHeader = false;
 
 //store task item to taskList object
 $scope.taskList = [];
@@ -24,16 +25,16 @@ $scope.addTask = function() {
   $scope.task = "";
   //$scope.deadline = "";
   $scope.date = "";
+  $scope.showListHeader = true;
+};
+
 
   //deleting task from Task list
   $scope.deleteTask = function() {
-    $scope.index = $scope.taskList.indexOf(item);
-    $scope.taskList.splice(index, 1);  
+     
   };
-
   
   //table sorting
   $scope.sortType = '';
 
-};
 });

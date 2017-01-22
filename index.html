@@ -7,7 +7,7 @@
 <body>
 
 
-  <h1>- - What's to be done this week? - -</h1>
+  <h1>- - <i class="fa fa-clock-o" aria-hidden="true"></i> What's to be done this week? - -</h1>
 
   <div ng-app="myApp" class="wrapepr" ng-controller="tasks">
     <div id="toDoPane">
@@ -21,7 +21,7 @@
       <button ng-click="addTask()">ADD</button>
     </div>
     <br><br>
-    <div id="toDoList">
+    <div id="toDoList" ng-show="showListHeader">
       <table>
         <tr>
           <th ng-click="sortType='task'">Task <i class="fa fa-sort-down" aria-hidden="true"></i></th>
