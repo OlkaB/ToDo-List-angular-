@@ -2,8 +2,11 @@ var app = angular.module("myApp", []);
 
 //days to drop-down list
 app.controller("tasks", function($scope) {
+
+/*   //list of days to select options
   $scope.days=[];
-  $scope.days = ["monday", "teusday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+  $scope.days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+*/
 
 //store task item to taskList object
 $scope.taskList = [];
@@ -13,20 +16,23 @@ $scope.addTask = function() {
   $scope.item = {
     id: $scope.taskId,
     task: $scope.task,
-    deadline: $scope.deadline
+    deadline: $scope.deadline,
+    date: $scope.taskDate
   }
   $scope.taskList.push($scope.item);
-  
   //clearing inputs
   $scope.task = "";
   $scope.deadline = "";
 
   //deleting task from Task list
   $scope.deleteTask = function() {
-    
-  }
+    $scope.index = $scope.taskList.indexOf(item);
+    $scope.taskList.splice(index, 1);  
+  };
+
+  
+  //table sorting
+  $scope.sortType = '';
+
 };
-
-
-
 });
