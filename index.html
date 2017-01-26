@@ -45,7 +45,7 @@
         <tr ng-repeat="item in taskList | orderBy:sortType" ng-model="item">
           <td>{{item.task}}</td>
           <td>{{item.date| date: "yyyy-MM-dd"}}</td>
-          <td><button ng-click="deleteTask()"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+          <td><button ng-click="deleteTask($scope.item)"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
         </tr>
       </table>
     </div>

@@ -33,18 +33,40 @@ $scope.addTask = function() {
   $scope.toDoPane.task.$setUntouched();
   $scope.toDoPane.date.$setUntouched();
   $scope.toDoPane.$setPristine();
+
+//deleting task from Task list
+  $scope.deleteTask = function(item) {
+  console.log("Task list before deletion: ");
+  console.log($scope.taskList);
+  //console.log($scope.taskList[0].id);
+  $scope.idOfItemToDelete = $scope.taskList[0].id;
+  
+
+  $scope.lisOfObjId = $scope.taskList.map(function(data) {
+  return data.id; 
+  });
+  console.log('List of obj id: ');
+  console.log($scope.lisOfObjId);
+
+  console.log('idOfItemToDelete: ');
+  console.log($scope.idOfItemToDelete);
+
+  //this part is not working correctly
+  $scope.itemToDeletePosition = $scope.lisOfObjId.indexOf($scope.idOfItemToDelete);
+  console.log('item To Delete Position: ');
+  console.log($scope.itemToDeletePosition);
+  //up
+
+  $scope.taskList.splice($scope.itemToDeletePosition, 1);
+  console.log("Task list after deletion: ");
+  console.log($scope.taskList);
+ };
+
 };
 
 
-  //deleting task from Task list
-  $scope.deleteTask = function() {
-     $scope.elementPos = $scope.taskList.map(function(data) {
-          return data.$scope.taskId; 
-      }).indexOf(1);
-     console.log($scope.elementPos);
-     $scope.taskList.slice($scope.elementPos);
-  };
-  
+
+ 
   //table sorting
   $scope.sortType = '';
 
