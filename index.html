@@ -9,7 +9,7 @@
 
   <h1>- - <i class="fa fa-clock-o" aria-hidden="true"></i> What's to be done? - -</h1>
 
-  <div ng-app="myApp" class="wrapepr" ng-controller="tasks">
+  <div ng-app="myApp" class="wrapepr" ng-controller="TasksCtrl">
     <form name="toDoPane" id="toDoPane" ng-submit="toDoPane.$valid && addTask()" novalidate>
       <div>
       <label>Deadline: </label>
@@ -45,7 +45,7 @@
         <tr ng-repeat="item in taskList | orderBy:sortType" ng-model="item">
           <td>{{item.task}}</td>
           <td>{{item.date| date: "yyyy-MM-dd"}}</td>
-          <td><button ng-click="deleteTask($scope.item)"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+          <td><button ng-click="deleteTask(item)"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
         </tr>
       </table>
     </div>

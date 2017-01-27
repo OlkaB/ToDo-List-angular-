@@ -1,7 +1,7 @@
 var app = angular.module("myApp", []);
 
 //days to drop-down list
-app.controller("tasks", function($scope) {
+app.controller("TasksCtrl", function($scope) {
 
 /*   //list of days to select options exchanged to date input
   $scope.days=[];
@@ -35,11 +35,11 @@ $scope.addTask = function() {
   $scope.toDoPane.$setPristine();
 
 //deleting task from Task list
-  $scope.deleteTask = function(item) {
+  $scope.deleteTask = function(item) {    
   console.log("Task list before deletion: ");
   console.log($scope.taskList);
   //console.log($scope.taskList[0].id);
-  $scope.idOfItemToDelete = $scope.taskList[0].id;
+  $scope.idOfItemToDelete = item.id;
   
 
   $scope.lisOfObjId = $scope.taskList.map(function(data) {
@@ -61,7 +61,6 @@ $scope.addTask = function() {
   console.log("Task list after deletion: ");
   console.log($scope.taskList);
  };
-
 };
 
 
