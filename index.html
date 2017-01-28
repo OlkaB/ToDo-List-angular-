@@ -26,11 +26,6 @@
         </div>
         <!--<p>untouched: {{toDoPane.task.$untouched}}; touched: {{toDoPane.task.$touched}};  pristine: {{toDoPane.task.$pristine}};  dirty: {{toDoPane.task.$dirty}}; valid: {{toDoPane.task.$valid}};<p>-->
       <button>ADD</button>
-
-      <!--<select ng-model="deadline" ng-options="day for day in days">
-        <option value="" id="startingOpt" disabled selected>Choose deadline...</option>
-      </select>
-      <p>untouched: {{toDoPane.$untouched}}; touched: {{toDoPane.$touched}};  pristine: {{toDoPane.$pristine}};  dirty: {{toDoPane.$dirty}}; valid: {{toDoPane.$valid}};<p>-->
     </form>
 
     <br><br>
@@ -42,7 +37,7 @@
           <th ng-click="sortType='date'">Deadline <i class="fa fa-sort-down" aria-hidden="true"></i></th> 
           <th></th>
         </tr>
-        <tr ng-repeat="item in taskList | orderBy:sortType" ng-model="item">
+        <tr ng-init="taskList" ng-repeat="item in taskList | orderBy:sortType" ng-model="item">
           <td>{{item.task}}</td>
           <td>{{item.date| date: "yyyy-MM-dd"}}</td>
           <td><button ng-click="deleteTask(item)"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>

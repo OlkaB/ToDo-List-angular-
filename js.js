@@ -1,71 +1,66 @@
 var app = angular.module("myApp", []);
 
-//days to drop-down list
 app.controller("TasksCtrl", function($scope) {
+  //localStorage.removeItem("taskListArr");
+  
+  //store task item to taskList object
+  $scope.taskList = JSON.parse(localStorage.getItem("taskListArr"));
 
-/*   //list of days to select options exchanged to date input
-  $scope.days=[];
-  $scope.days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
-  */
-
-//tasks list show/hide controller  
-$scope.showListHeader = false;
-
-//store task item to taskList object
-$scope.taskList = [];
-$scope.taskId = 0;
-$scope.addTask = function() {
-  $scope.taskId++;
-  $scope.item = {
-    id: $scope.taskId,
-    task: $scope.task,
-    //deadline: $scope.deadline,
-    date: $scope.date
+  //task list pane show/hide trigger
+  console.log("Task list na starcie: ");
+  console.log($scope.taskList);
+  if ($scope.taskList.length !== 0) {
+    $scope.showListHeader = true;
+    //function to find highest id to not to repeat it
+    $scope.lisOfObjId = $scope.taskList.map(function(data) {
+      return data.id;
+    });
+    $scope.taskId = Math.max($scope.lisOfObjId)+1;
+  } else {
+    $scope.showListHeader = false;
+    $scope.taskId = 0;
   }
-  $scope.taskList.push($scope.item);
-  //clearing inputs
-  $scope.task = "";
-  //$scope.deadline = "";
-  $scope.date = "";
-  $scope.showListHeader = true;
-  
-  //clearing invalid messages after form submit
-  $scope.toDoPane.task.$setUntouched();
-  $scope.toDoPane.date.$setUntouched();
-  $scope.toDoPane.$setPristine();
+  console.log($scope.showListHeader);
 
-//deleting task from Task list
-  $scope.deleteTask = function(item) {    
-  console.log("Task list before deletion: ");
-  console.log($scope.taskList);
-  //console.log($scope.taskList[0].id);
-  $scope.idOfItemToDelete = item.id;
   
 
-  $scope.lisOfObjId = $scope.taskList.map(function(data) {
-  return data.id; 
-  });
-  console.log('List of obj id: ');
-  console.log($scope.lisOfObjId);
+  //function to add task
+  $scope.addTask = function() {
+    $scope.taskId++;
+    $scope.item = {
+      id: $scope.taskId,
+      task: $scope.task,
+      date: $scope.date
+    };
+    $scope.taskList.push($scope.item);
+    localStorage.setItem("taskListArr", JSON.stringify($scope.taskList));
+    //clearing inputs
+    $scope.task = "";
+    $scope.date = "";
+    $scope.showListHeader = true;
 
-  console.log('idOfItemToDelete: ');
-  console.log($scope.idOfItemToDelete);
+    //clearing invalid messages after form submit
+    $scope.toDoPane.task.$setUntouched();
+    $scope.toDoPane.date.$setUntouched();
+    $scope.toDoPane.$setPristine();
 
-  //this part is not working correctly
-  $scope.itemToDeletePosition = $scope.lisOfObjId.indexOf($scope.idOfItemToDelete);
-  console.log('item To Delete Position: ');
-  console.log($scope.itemToDeletePosition);
-  //up
+    //deleting task from Task list
+    $scope.deleteTask = function(item) {
+      $scope.idOfItemToDelete = item.id;
 
-  $scope.taskList.splice($scope.itemToDeletePosition, 1);
-  console.log("Task list after deletion: ");
-  console.log($scope.taskList);
- };
-};
+      $scope.getTaskListArr = JSON.parse(localStorage.getItem("taskListArr"));
+      $scope.lisOfObjId = $scope.getTaskListArr.map(function(data) {
+        return data.id;
+      });
 
+      $scope.itemToDeletePosition = $scope.lisOfObjId.indexOf($scope.idOfItemToDelete);
 
+      $scope.taskList.splice($scope.itemToDeletePosition, 1);
+      localStorage.setItem("taskListArr", JSON.stringify($scope.taskList));
+      console.log(localStorage);
+    };
+  };
 
- 
   //table sorting
   $scope.sortType = '';
 
